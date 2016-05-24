@@ -8,7 +8,7 @@
                 $routeProvider.when("/", {
                     controller: "browserController",
                     controllerAs: "vm",
-                    templateUrl: "/views/drivers.html"
+                    templateUrl: "/views/browser.html"
                 });
 
                 $routeProvider.otherwise({ redirectTo: "/" });

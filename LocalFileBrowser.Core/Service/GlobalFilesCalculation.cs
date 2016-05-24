@@ -20,9 +20,9 @@ namespace LocalFileBrowser.Core.Service
             int filesBetween10ANd50Mb = 0;
             int filesMoreThan100Mb = 0;
 
-            int count = 0;
+            int errCount = 0;
 
-            var listOfFiles = GetAllFilesRecurs(path, "*.*", ref count);
+            var listOfFiles = GetAllFilesRecurs(path, "*.*", ref errCount);
 
             try
             {
@@ -34,19 +34,19 @@ namespace LocalFileBrowser.Core.Service
                     if (fileLength <= TenMb)
                         filesThatLessThan10Mb++;
 
-                    else if (fileLength >= TenMb && fileLength <= FiftyMb)
+                    else if (fileLength > TenMb && fileLength <= FiftyMb)
                         filesBetween10ANd50Mb++;
 
                     else if (fileLength >= OneHundredMb)
                         filesMoreThan100Mb++;
                 }
             }
-            catch (UnauthorizedAccessException ex) { count++; Console.WriteLine("GetFilesCount_Unauthorized"); Console.WriteLine(ex.Message); }
-            catch (PathTooLongException ex) { count++; Console.WriteLine("GetFilesCount_PathTooLong"); Console.WriteLine(ex.Message); }
-            catch (Exception ex) { count++; Console.WriteLine("GetFilesCount_Exception"); Console.WriteLine(ex.Message); }
+            catch (UnauthorizedAccessException ex) { errCount++; Console.WriteLine("GetFilesCount_Unauthorized"); Console.WriteLine(ex.Message); }
+            catch (PathTooLongException ex) { errCount++; Console.WriteLine("GetFilesCount_PathTooLong"); Console.WriteLine(ex.Message); }
+            catch (Exception ex) { errCount++; Console.WriteLine("GetFilesCount_Exception"); Console.WriteLine(ex.Message); }
 
             FolderFilesVariations folderFiles = new FolderFilesVariations();
-            folderFiles.Errors = count;
+            folderFiles.Errors = errCount;
             folderFiles.FilesMoreThan100Mb = filesMoreThan100Mb;
             folderFiles.FilesBetween10ANd50Mb = filesBetween10ANd50Mb;
             folderFiles.FilesThatLessThan10Mb = filesThatLessThan10Mb;
@@ -55,11 +55,7 @@ namespace LocalFileBrowser.Core.Service
             return folderFiles;
         }
 
-        /// <summary>
-        /// Отримуємо всі файли в поточному каталозі рекурсивно
-        /// </summary>
-        /// <param name="count">кількість непрочитаних файлів</param>
-        private static List<string> GetAllFilesRecurs(string path, string pattern, ref int count)
+        private static List<string> GetAllFilesRecurs(string path, string pattern, ref int errCount)
         {
             var files = new List<string>();
 
@@ -68,12 +64,12 @@ namespace LocalFileBrowser.Core.Service
                 files.AddRange(Directory.GetFiles(path, pattern, SearchOption.TopDirectoryOnly));
 
                 foreach (var directory in Directory.GetDirectories(path))
-                    files.AddRange(GetAllFilesRecurs(directory, pattern, ref count));
+                    files.AddRange(GetAllFilesRecurs(directory, pattern, ref errCount));
             }
-            catch (UnauthorizedAccessException ex) { count++; Console.WriteLine("GetAllFilesRecurs_Unauthorized"); Console.WriteLine(ex.Message); }
-            catch (PathTooLongException ex) { count++; Console.WriteLine("GetAllFilesRecurs_PathTooLong"); Console.WriteLine(ex.Message); }
-            catch (DirectoryNotFoundException) { count++; Console.WriteLine("GetAllFilesRecurs_NotFound"); return null;  }
-            catch (Exception) { count++; Console.WriteLine("GetAllFilesRecurs_Exception"); return null; }
+            catch (UnauthorizedAccessException ex) { errCount++; Console.WriteLine("GetAllFilesRecurs_Unauthorized"); Console.WriteLine(ex.Message); }
+            catch (PathTooLongException ex) { errCount++; Console.WriteLine("GetAllFilesRecurs_PathTooLong"); Console.WriteLine(ex.Message); }
+            catch (DirectoryNotFoundException) { errCount++; Console.WriteLine("GetAllFilesRecurs_NotFound"); return null;  }
+            catch (Exception) { errCount++; Console.WriteLine("GetAllFilesRecurs_Exception"); return null; }
 
             return files;
         }

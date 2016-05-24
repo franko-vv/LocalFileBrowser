@@ -45,9 +45,9 @@ namespace LocalFileBrowser.Controllers.api
 
                 FolderFilesVariations countFilesVariationsForFolder;
 
-                // If path - drive, then check cache
+                // If path - drive check cache
                 if (path.Length == 3)
-                    countFilesVariationsForFolder = SetGetCacheForDrives(path);
+                    countFilesVariationsForFolder = SetGetCache(path);
                 else
                     countFilesVariationsForFolder = GlobalFilesCalculation.GetFilesCount(path);
 
@@ -61,7 +61,7 @@ namespace LocalFileBrowser.Controllers.api
             }
         }
 
-        public FolderFilesVariations SetGetCacheForDrives(string path)
+        public FolderFilesVariations SetGetCache(string path)
         {
             FolderFilesVariations responseCountFiles;
             const int countMinutesForCache = 15;

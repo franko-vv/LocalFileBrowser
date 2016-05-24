@@ -58,11 +58,6 @@ namespace LocalFileBrowser.Core.Service
             return null;
         }
 
-        /// <summary>
-        /// Get all files from folder
-        /// </summary>
-        /// <param name="dirName">path folder</param>
-        /// <param name="countErrors">count of errors</param>
         private static List<Item> GetFilesForFolder(string dirName)
         {
             try
