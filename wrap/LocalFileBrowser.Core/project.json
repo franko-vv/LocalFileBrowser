@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net45": {
+      "wrappedProject": "../../LocalFileBrowser.Core/LocalFileBrowser.Core.csproj",
+      "bin": {
+        "assembly": "../../LocalFileBrowser.Core/obj/{configuration}/LocalFileBrowser.Core.dll",
+        "pdb": "../../LocalFileBrowser.Core/obj/{configuration}/LocalFileBrowser.Core.pdb"
+      }
+    }
+  }
+}

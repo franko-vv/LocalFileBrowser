@@ -1,0 +1,2 @@
+D:\VSProjects\LocalFileBrowser\artifacts\obj\LocalFileBrowser\Debug\LocalFileBrowser.xprojResolveAssemblyReference.cache
+D:\Visual Studio Projects\LocalFileBrowser\artifacts\obj\LocalFileBrowser\Debug\LocalFileBrowser.xprojResolveAssemblyReference.cache

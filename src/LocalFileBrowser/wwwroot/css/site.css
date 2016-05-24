@@ -1,0 +1,55 @@
+﻿body {
+    padding-bottom: 20px;
+}
+
+footer{
+    margin-top: 50px;
+}
+
+.cl-effect a::after {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	content: '';
+	opacity: 0;
+	-webkit-transition: height 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+	-moz-transition: height 0.3s, opacity 0.3s, -moz-transform 0.3s;
+	transition: height 0.3s, opacity 0.3s, transform 0.3s;
+	-webkit-transform: translateY(-8px);
+	-moz-transform: translateY(-8px);
+	transform: translateY(-8px);
+}
+
+.cl-effect a:hover::after,
+.cl-effect a:focus::after {
+	height: 5px;
+	opacity: 1;
+	-webkit-transform: translateY(0px);
+	-moz-transform: translateY(0px);
+	transform: translateY(0px);
+}
+
+.inlinediv a:hover,
+.inlinediv a:focus {
+	outline: none;
+}
+
+.inlinediv a {
+	position: relative;
+	display: inline-block;
+	outline: none;
+	text-decoration: none;
+	letter-spacing: 1px;
+    cursor:pointer;
+}
+
+.inlinediv {
+	display: inline-block;
+    margin: 8px 8px;
+}
+
+.pointer{
+    cursor:pointer;
+}

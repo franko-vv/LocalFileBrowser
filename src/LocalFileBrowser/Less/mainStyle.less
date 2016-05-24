@@ -1,0 +1,32 @@
+﻿@font:Verdana;
+@yellow: #e0c561;
+@mainColor: #f4f5f9;
+@darkred : #90230a;
+@lightred: #de835b;
+@smooth: #f0e1ba;
+ 
+body{
+    font-family:@font;
+    background-color: @mainColor;
+}
+
+.folderIcon {
+    color:@yellow;
+}
+
+.redtext{
+    color:@darkred;
+}
+
+hr {
+    border-color: @lightred;
+}
+
+.inlinediv a{
+    color: @darkred;
+    text-shadow: 0 0 1px rgba(255,255,255,0.3);
+}
+
+.cl-effect a::after{
+    background: @smooth;
+}
